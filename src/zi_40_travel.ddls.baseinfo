@@ -6,7 +6,9 @@
 "Z40_TRAVEL"
 ],
 "ASSOCIATED":
-[],
+[
+"ZI_40_TRAVELITEM"
+],
 "BASE":
 []
 }

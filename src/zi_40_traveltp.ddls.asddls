@@ -13,11 +13,14 @@
     semanticKey: ['TravelAgency', 'TravelNumber'],
     transactionalProcessingEnabled: true,
     writeActivePersistence: 'Z40_TRAVEL2',
-    updateEnabled: true
+    createEnabled: true,
+    updateEnabled: true,
+    deleteEnabled: true
 }
 define view ZI_40_TravelTP
   as select from ZI_40_Travel
-
+  association [*] to ZI40_TravelItemTP as _TravelItems on  $projection.TravelNumber = _TravelItems.TravelNumber
+                                                       and $projection.TravelAgency = _TravelItems.TravelAgency
 {
       @ObjectModel.readOnly: true
   key TravelAgency,
@@ -32,8 +35,8 @@ define view ZI_40_TravelTP
       EndDate,
       @ObjectModel.readOnly: true
       Status,
-      @Semantics.systemDateTime.lastChangedAt: true
       ChangedAt,
-      @Semantics.user.lastChangedBy: true
-      ChangedBy
+      ChangedBy,
+      @ObjectModel.association.type: [#TO_COMPOSITION_CHILD]
+      _TravelItems
 }

@@ -3,12 +3,10 @@
 {
 "FROM":
 [
-"ZI_40_CONNECTION"
+"SFLIGHT"
 ],
 "ASSOCIATED":
-[
-"ZI_40_FLIGHT2TP"
-],
+[],
 "BASE":
 []
 }

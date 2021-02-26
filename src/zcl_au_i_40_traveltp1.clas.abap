@@ -31,6 +31,10 @@ CLASS zcl_au_i_40_traveltp1 IMPLEMENTATION.
         et_data                 = travels
         et_failed_key           = et_failed_key ).
 
+    IF eo_message IS NOT BOUND.
+      eo_message = /bobf/cl_frw_factory=>get_message( ).
+    ENDIF.
+
     IF is_ctx-activity = sc_activity-change OR
      ( is_ctx-activity = sc_activity-execute AND is_ctx-action_name = 'SET_TO_CANCELLED' ).
       LOOP AT travels REFERENCE INTO DATA(travel).
@@ -38,6 +42,12 @@ CLASS zcl_au_i_40_traveltp1 IMPLEMENTATION.
             ID 'AGENCYNUM' FIELD travel->travelagency
             ID 'ACTVT' FIELD '02'.
         IF sy-subrc <> 0.
+          DATA(message) = NEW zcm_40_travel(
+            textid                  = zcm_40_travel=>message1
+            severity                = zcm_40_travel=>co_severity_error ).
+*          i_travel_number         = ).
+
+          eo_message->add_cm(  message ).
           et_failed_key = VALUE #( BASE et_failed_key ( key = travel->key ) ).
         ENDIF.
       ENDLOOP.

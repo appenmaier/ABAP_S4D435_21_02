@@ -14,12 +14,16 @@
 @ObjectModel:{
     transactionalProcessingDelegated: true,
     semanticKey: ['TravelAgency', 'TravelNumber'],
-    updateEnabled: true
+    createEnabled: true,
+    updateEnabled: true,
+    deleteEnabled: true
 }
 define view ZC_40_TravelTP
   as select from ZI_40_TravelTP
-  association [1] to ZI_40_CustomerVH as _CustomerValueHelp on $projection.Customer = _CustomerValueHelp.CustomerID
-{     
+  association [1] to ZI_40_CustomerVH   as _CustomerValueHelp on  $projection.Customer = _CustomerValueHelp.CustomerID
+  association [*] to ZC_40_TravelItemTP as _TravelItems       on  $projection.TravelNumber = _TravelItems.TravelNumber
+                                                              and $projection.TravelAgency = _TravelItems.TravelAgency
+{
   key TravelAgency,
   key TravelNumber,
 
@@ -35,5 +39,7 @@ define view ZC_40_TravelTP
       Status,
       ChangedAt,
       ChangedBy,
-      _CustomerValueHelp
+      _CustomerValueHelp,
+      @ObjectModel.association.type: [#TO_COMPOSITION_CHILD]
+      _TravelItems
 }

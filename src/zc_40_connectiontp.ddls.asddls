@@ -13,14 +13,16 @@
 @Metadata.allowExtensions: true
 define view ZC_40_ConnectionTP
   as select from ZI_40_ConnectionTP
-  association [1] to ZI_40_Airport as _DepartureAirport on $projection.DepartureAirport = _DepartureAirport.Id
-  association [1] to ZI_40_Airport as _ArrivalAirport   on $projection.ArrivalAirport = _ArrivalAirport.Id
+  association [1] to ZI_40_Airport as _DepartureAirport on  $projection.DepartureAirport = _DepartureAirport.Id
+  association [1] to ZI_40_Airport as _ArrivalAirport   on  $projection.ArrivalAirport = _ArrivalAirport.Id
+  association [*] to ZC_40_Flight2 as _Flights          on  $projection.CarrierId    = _Flights.carrid
+                                                        and $projection.ConnectionId = _Flights.connid
 
 {
   key CarrierId,
   key ConnectionId,
-      DepartureCountry,      
-      DepartureCity,      
+      DepartureCountry,
+      DepartureCity,
       @Consumption.valueHelp: '_DepartureAirport'
       DepartureAirport,
       ArrivalCountry,
@@ -34,5 +36,7 @@ define view ZC_40_ConnectionTP
       FlightType,
       Period,
       _DepartureAirport,
-      _ArrivalAirport
+      _ArrivalAirport,
+      @ObjectModel.association.type: [#TO_COMPOSITION_CHILD]
+      _Flights
 }

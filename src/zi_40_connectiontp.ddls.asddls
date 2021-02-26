@@ -18,6 +18,8 @@
 }
 define view ZI_40_ConnectionTP
   as select from ZI_40_Connection
+  association [*] to ZI_40_Flight2TP as _Flights on  $projection.CarrierId    = _Flights.carrid
+                                                 and $projection.ConnectionId = _Flights.connid
 {
       @ObjectModel.mandatory: true
   key CarrierId,
@@ -40,5 +42,7 @@ define view ZI_40_ConnectionTP
       Distance,
       DistanceUnit,
       FlightType,
-      Period
+      Period,
+      @ObjectModel.association.type: [#TO_COMPOSITION_CHILD]
+      _Flights
 }
