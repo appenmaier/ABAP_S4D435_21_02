@@ -1,0 +1,7 @@
+@EndUserText.label: 'Connection'
+@MappingRole: true
+define role ZC_40_CONNECTIONTP {
+    grant select on ZC_40_ConnectionTP
+      where inheriting conditions from entity ZI_40_ConnectionTP;
+              
+}

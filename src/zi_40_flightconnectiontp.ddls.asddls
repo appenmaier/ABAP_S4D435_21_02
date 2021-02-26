@@ -7,7 +7,7 @@
 @ObjectModel:{
     compositionRoot: true,
     transactionalProcessingEnabled: true,
-    writeActivePersistence: 'zv_40_flightconn',
+    writeActivePersistence: 'Z40_FLIGHTCONN',
 
     createEnabled: true,
     updateEnabled: true,

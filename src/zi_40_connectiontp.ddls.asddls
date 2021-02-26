@@ -7,7 +7,9 @@
 @ObjectModel: {
     compositionRoot: true,
     transactionalProcessingEnabled: true,
-    writeActivePersistence: 'ZV_40_CONNECTION',
+    writeActivePersistence: 'Z40_CONNECTION',
+    
+    updateEnabled: true,
 
     modelCategory: #BUSINESS_OBJECT,
     representativeKey: ['CarrierId', 'ConnectionId'],
@@ -24,7 +26,6 @@ define view ZI_40_ConnectionTP
       ArrivalCountry,
       ArrivalCity,
       ArrivalAirport,
-      FlightTime,
       DepartureTime,
       ArrivalTime,
       Distance,

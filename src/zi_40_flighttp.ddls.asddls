@@ -5,7 +5,7 @@
 @EndUserText.label: 'Transactional View: Flight'
 @VDM.viewType: #TRANSACTIONAL
 @ObjectModel:{
-    writeActivePersistence: 'zv_40_flight',
+    writeActivePersistence: 'Z40_FLIGHT',
 
     createEnabled: true,
     updateEnabled: true,

@@ -4,13 +4,15 @@
     typeNamePlural: 'Flight Connections',
     title: {  value: 'CarrierID' },
     description: { value: 'ConnectionId' }}
-annotate view ZC_40_FlightConnection with
+annotate view ZC_40_ConnectionTP with
 {
+  @UI.facet: [{type: #IDENTIFICATION_REFERENCE }]
   @UI:{
     selectionField: [{ position: 10 }],
-    lineItem: [{ position: 10 }],
+    lineItem: [{ position: 10 },
+               { position: 10, type: #FOR_ACTION, dataAction: 'BOPF:SET_FLIGHT_TYPE_TO_X', label: 'Set FlightType to X' }],
     identification: [{ position: 10 }]}
-  CarrierID;
+  CarrierId;
   @UI:{
     selectionField: [{ position: 20 }],
     lineItem: [{ position: 20 }],

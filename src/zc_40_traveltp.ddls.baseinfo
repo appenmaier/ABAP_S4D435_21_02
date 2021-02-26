@@ -3,12 +3,10 @@
 {
 "FROM":
 [
-"ZI_40_CONNECTIONTP"
+"ZI_40_TRAVELTP"
 ],
 "ASSOCIATED":
-[
-"ZI_40_AIRPORT"
-],
+[],
 "BASE":
 []
 }

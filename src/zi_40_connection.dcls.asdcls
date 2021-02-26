@@ -1,0 +1,7 @@
+@EndUserText.label: 'Connection'
+@MappingRole: true
+define role ZI_40_CONNECTION {
+    grant select on ZI_40_Connection
+     where (CarrierID) = aspect pfcg_auth(S_CARRID, CARRID, ACTVT = '03');
+                        
+}
