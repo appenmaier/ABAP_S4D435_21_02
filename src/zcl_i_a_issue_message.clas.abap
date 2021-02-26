@@ -17,7 +17,7 @@ ENDCLASS.
 CLASS zcl_i_a_issue_message IMPLEMENTATION.
 
   METHOD /bobf/if_frw_action~execute.
-      IF eo_message IS NOT BOUND.
+    IF eo_message IS NOT BOUND.
       eo_message = /bobf/cl_frw_factory=>get_message( ).
     ENDIF.
 

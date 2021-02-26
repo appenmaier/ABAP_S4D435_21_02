@@ -33,6 +33,10 @@ CLASS zcl_i_v_customer_exists IMPLEMENTATION.
       "TODO: Message
     ENDIF.
 
+    IF eo_message IS NOT BOUND.
+      eo_message = /bobf/cl_frw_factory=>get_message( ).
+    ENDIF.
+
     LOOP AT travels REFERENCE INTO DATA(travel).
       TRY.
           DATA(customer_id) = customer_ids[ id = travel->customer ].

@@ -39,6 +39,10 @@ CLASS zcl_i_v_sequence_of_dates IMPLEMENTATION.
         et_data                 = travels_old
         et_failed_key           = et_failed_key ).
 
+    IF eo_message IS NOT BOUND.
+      eo_message = /bobf/cl_frw_factory=>get_message( ).
+    ENDIF.
+
     LOOP AT travels_new REFERENCE INTO DATA(travel_new).
       IF eo_message IS NOT BOUND.
         eo_message = /bobf/cl_frw_factory=>get_message( ).
