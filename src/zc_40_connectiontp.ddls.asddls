@@ -7,6 +7,7 @@
 @OData.publish: true
 @ObjectModel:{
     transactionalProcessingDelegated: true,
+    createEnabled: true,
     updateEnabled: true
 }
 @Metadata.allowExtensions: true
@@ -18,18 +19,12 @@ define view ZC_40_ConnectionTP
 {
   key CarrierId,
   key ConnectionId,
-      @ObjectModel.readOnly: true
-      DepartureCountry,
-      @ObjectModel.readOnly: true
-      DepartureCity,
-      @ObjectModel.mandatory: true
-      @ObjectModel.foreignKey.association: '_DepartureAirport'
+      DepartureCountry,      
+      DepartureCity,      
+      @Consumption.valueHelp: '_DepartureAirport'
       DepartureAirport,
-      @ObjectModel.readOnly: true
       ArrivalCountry,
-      @ObjectModel.readOnly: true
       ArrivalCity,
-      @ObjectModel.mandatory: true
       @Consumption.valueHelp: '_ArrivalAirport'
       ArrivalAirport,
       DepartureTime,

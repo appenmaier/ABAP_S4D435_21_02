@@ -8,6 +8,6 @@ define view ZI_40_Airport
 {
 //      @ObjectModel.text.element: ['Name']
   key id   as Id,
-      @Semantics.text: true
+//      @Semantics.text: true
       name as Name
 }

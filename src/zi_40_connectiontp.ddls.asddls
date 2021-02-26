@@ -8,7 +8,8 @@
     compositionRoot: true,
     transactionalProcessingEnabled: true,
     writeActivePersistence: 'Z40_CONNECTION',
-    
+
+    createEnabled: true,
     updateEnabled: true,
 
     modelCategory: #BUSINESS_OBJECT,
@@ -18,13 +19,21 @@
 define view ZI_40_ConnectionTP
   as select from ZI_40_Connection
 {
+      @ObjectModel.mandatory: true
   key CarrierId,
+      @ObjectModel.mandatory: true
   key ConnectionId,
+      @ObjectModel.readOnly: true
       DepartureCountry,
+      @ObjectModel.readOnly: true
       DepartureCity,
+      @ObjectModel.mandatory: true
       DepartureAirport,
+      @ObjectModel.readOnly: true
       ArrivalCountry,
+      @ObjectModel.readOnly: true
       ArrivalCity,
+      @ObjectModel.mandatory: true
       ArrivalAirport,
       DepartureTime,
       ArrivalTime,

@@ -13,11 +13,13 @@
 
 @ObjectModel:{
     transactionalProcessingDelegated: true,
-    semanticKey: ['TravelAgency', 'TravelNumber'] 
+    semanticKey: ['TravelAgency', 'TravelNumber'],
+    updateEnabled: true
 }
 define view ZC_40_TravelTP
   as select from ZI_40_TravelTP
-{
+  association [1] to ZI_40_CustomerVH as _CustomerValueHelp on $projection.Customer = _CustomerValueHelp.CustomerID
+{     
   key TravelAgency,
   key TravelNumber,
 
@@ -26,10 +28,12 @@ define view ZC_40_TravelTP
                }
 
       TravelDescription,
+      @Consumption.valueHelp: '_CustomerValueHelp'
       Customer,
       StartDate,
       EndDate,
       Status,
       ChangedAt,
-      ChangedBy
+      ChangedBy,
+      _CustomerValueHelp
 }
